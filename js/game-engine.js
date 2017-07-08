@@ -77,7 +77,8 @@ function Game(name,canvasId){
         //游戏流程
     this.INTERVAL_loop=5000;
     this.index_loop=1;
-
+    this.lastTimeUpdate_loopCount=0;
+    this.INTERVAL_loopCount=500;
 
     this.started=false;
     this.gameOver=false;
@@ -146,7 +147,7 @@ Game.prototype= {
              metric.width=200;
              this.context.fillText(text,400,250,200);*/
             this.context.textAlign='left';
-            drawText('这是我在学习了这本书后，独立开发的一款H5游戏（除了素材），没有使用任何框架，都是原生的技术，脱产学习了JS四个月，最近在找工作，想从事前段或者H5游戏方向，如果有意向或者游戏中出现了我没有考虑到的BUG，麻烦加微信详谈(向大佬低头)，万分感谢！                       再给你个么么哒(⑉°з°)-♡',500,75,400);
+            drawText('这是我在学习了这本书后，独立开发的一款H5游戏（除了素材），没有使用任何框架，都是原生的技术，脱产学习了JS四个月，最近在找工作，想从事前段或者H5游戏方向，如果有意向或者游戏中出现了我没有考虑到的BUG，麻烦加微信详谈(向大佬低头)，万分感谢！               再给你个么么哒(⑉°з°)-♡，最后特别感谢知乎的朋友冴羽和井藏天的无私帮助',500,75,400);
             this.context.drawImage(this.getImage('images/book.jpg'),0,0,470,630,350,75,120,150);
             this.context.restore();
             lastScreen_button=document.getElementById('lastScreen_button');
@@ -306,6 +307,7 @@ Game.prototype= {
         this.updateWeaponData(time,sprite_player,this.panel_data);
         this.updateCountData(time,this.count_deadMonster,this.panel_data);
         this.updatefireAvailableData(time,this.panel_data.count,this.panel_data);
+        this.updateLoopsCountData(time,this.panel_data);
         this.context.fillText('游戏时间：'+this.panel_data.gameTime,900,100);
         this.context.fillText('血量:'+this.panel_data.healthPoint,900,200);
 
@@ -655,6 +657,14 @@ Game.prototype= {
                         monsterData_tem.number++;
                     }
                 }else if(this.index_loop===25){
+                    if(monsterData_tem.name==='boss'){
+                        monsterData_tem.number++;
+                    }
+                }else if(this.index_loop===37){
+                    if(monsterData_tem.name==='spider'){
+                        monsterData_tem.number++;
+                    }
+                }else  if(this.index_loop===48){
                     if(monsterData_tem.name==='boss'){
                         monsterData_tem.number++;
                     }
@@ -1269,7 +1279,7 @@ Game.prototype= {
     updateGameTimeData:function(time,obj_data){
         if(time-this.lastTimeUpdate_gameTime>this.INTERVAL_gameTime){
             var tem=parseInt(this.gameTime/1000);
-            if(tem>=180){
+            if(tem>=300){
                 this.gameOver=true;
                 this.win=true;
             }
@@ -1312,6 +1322,12 @@ Game.prototype= {
                 this.count_20++;
             }
             this.lastTimeUpdate_fireAvailable=time;
+        };
+    },
+    updateLoopsCountData:function(time,obj_data){
+        if(time-this.lastTimeUpdate_loopCount>this.INTERVAL_loopCount){
+            obj_data.loops_count=this.index_loop;
+            this.lastTimeUpdate_loopCount=time;
         };
     },
 
@@ -1405,17 +1421,17 @@ function drawText(t,x,y,w){
     for(var b = 0; b < row.length; b++){
         game.context.fillText(row[b],x,y+(b+1)*20);
     }
-};
+}
 function togglePaused(){
     game.togglePaused();
     pausedMask.style.display=game.paused?'block':'none';
-};
+}
 function playSound(Id){
     var audio=document.getElementById(Id);
     if(Id==='audio_bg')audio.volume=0.7;
     //audio.load();
     audio.play();
-};
+}
 function pausedSound(Id){
     var audio=document.getElementById(Id);
     audio.pause();

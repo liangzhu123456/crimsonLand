@@ -143,7 +143,12 @@ var lastScreen_button=document.getElementById('lastScreen_button');
 lastScreen_button.onclick=function(e){
     //part one 让在玩一局的按钮消失
     lastScreen_button.className='';
-
+     monstersData_tem=[
+        {name:'zombie',left:0,top:0,width:32,height:35,cells:zombieCells,dieCells:zombieDieCells,healthPoint:40,number:2,behaviors:undefined,velocity:20},
+        {name:'lizard',left:0,top:0,width:55,height:32,cells:lizardCells,dieCells:lizardDieCells,healthPoint:40,number:1,behaviors:undefined,velocity:30},
+        {name:'spider',left:0,top:0,width:70,height:60,cells:spiderCells,dieCells:spiderDieCells,healthPoint:50,number:0,behaviors:undefined,velocity:25},
+        {name:'boss',left:0,top:0,width:70,height:60,cells:bossCells,dieCells:bossDieCells,healthPoint:100,number:0,behaviors:undefined,velocity:20}
+    ];
     e.preventDefault();
     game=new Game('crimson','canvas');
     game.queueImage('images/bkg.jpg');

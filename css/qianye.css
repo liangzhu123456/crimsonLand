@@ -6,7 +6,7 @@
     margin:0 auto;
 }
 #firstScreen_title{
-    margin-top: 50px;
+    margin-top: 40px;
     display: inline-block;
     font-family:'宋体',sans-serif;
     font-size:30px;
@@ -16,7 +16,7 @@
 }
 #firstScreen_blurb{
     display: block;
-    margin:50px 100px 20px 100px;
+    margin:20px 100px 20px 100px;
     /*background-color: tomato;*/
 }
 #firstScreen_blurb p:first-child{
