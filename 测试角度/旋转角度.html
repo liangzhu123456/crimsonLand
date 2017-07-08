@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #canvas{
+            display:block;
+            border: 1px solid #000;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="800" height="600">you computer is out off the time!</canvas>
+<script>
+    var canvas=document.getElementById('canvas');
+    var context=canvas.getContext('2d');
+    var img=new Image();
+    img.src='talent.jpg';
+    context.translate(100,100);
+    context.rotate(Math.atan(1));
+    context.translate(-100,-100);
+    context.drawImage(img,100,100)
+</script>
+</body>
+</html>
